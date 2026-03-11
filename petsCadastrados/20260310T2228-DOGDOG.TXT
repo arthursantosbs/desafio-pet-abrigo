@@ -1,0 +1,7 @@
+1 - dog dog
+2 - CACHORRO
+3 - MACHO
+4 - bjm constante, 123, esperanca
+5 - 2.0 anos
+6 - 12.0 kg
+7 - buldog

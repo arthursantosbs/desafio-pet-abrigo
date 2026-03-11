@@ -1,7 +1,9 @@
 package br.com.abrigo.main;
 
-import br.com.abrigo.services.ArquivoService;
+import br.com.abrigo.entities.Pet;
+import br.com.abrigo.services.*;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -34,25 +36,64 @@ public class Main {
                 switch (opcao) {
                     case 1:
                         System.out.println("Iniciando cadastro de novo pet...");
-                        // Aqui você pode chamar o método para cadastrar um novo pet
-                        leitor.lerPerguntas();
+                        // Aqui você pode chamar o metodo para cadastrar um novo pet
+                        List<String> perguntas = leitor.lerPerguntas();
+                        if (perguntas != null) {
+                            PetService petService = new PetService();
+                            try {
+                                petService.iniciarCadastro(perguntas, sc);
+                            } catch (Exception e) {
+                                System.out.println("Erro durante o cadastro do pet: " + e.getMessage());
+                            }
+                        }
                         //adicionar a captação dos dados do pet e o processo de cadastro
                         break;
                     case 2:
                         System.out.println("Iniciando alteração dos dados do pet cadastrado...");
-                        // Aqui você pode chamar o método para alterar os dados de um pet cadastrado
+                        ArquivoService arquivoService = new ArquivoService();
+                        List<Pet> todosOsPets = arquivoService.carregarTodosOsPets();
+                        if (todosOsPets.isEmpty()) {
+                            System.out.println("não há pets cadastrados para buscar!");
+                            break;
+                        }
+                        BuscaService buscaService = new BuscaService();
+                        List<Pet> petsEncontrados = buscaService.iniciarBusca(todosOsPets, sc);
+
+                        AlteracaoService alteracao = new AlteracaoService();
+                        alteracao.iniciarAlteracao(petsEncontrados, sc);
                         break;
+
                     case 3:
                         System.out.println("Iniciando processo de deleção de pet cadastrado...");
-                        // Aqui você pode chamar o método para deletar um pet cadastrado
+                        ArquivoService arqServDelete = new ArquivoService();
+                        BuscaService buscaServDelete = new BuscaService();
+                        DelecaoService delecaoService = new DelecaoService();
+
+                        boolean finalizouDelecao = false;
+                        while (!finalizouDelecao) {
+                            List<Pet> todosOsPetsDel = arqServDelete.carregarTodosOsPets();
+                            if (todosOsPetsDel.isEmpty()) {
+                                System.out.println("não há pets cadastrados para deletar!");
+                                break;
+                            }
+
+                            System.out.println("Busque o pet que deseja deletar:");
+                            List<Pet> petsEncontradosDel = buscaServDelete.iniciarBusca(todosOsPetsDel, sc);
+                            if (sc.nextLine().trim().equalsIgnoreCase("S")) {
+                                continue;
+                            }else {
+                                break;
+                            }
+                        }
+                        // Aqui você pode chamar o metodo para deletar um pet cadastrado
                         break;
                     case 4:
                         System.out.println("Listando todos os pets cadastrados...");
-                        // Aqui você pode chamar o método para listar todos os pets cadastrados
+                        // Aqui você pode chamar o metodo para listar todos os pets cadastrados
                         break;
                     case 5:
                         System.out.println("Listando pets por algum critério...");
-                        // Aqui você pode chamar o método para listar pets por algum critério
+                        // Aqui você pode chamar o metodo para listar pets por algum critério
                         break;
                     case 6:
                         System.out.println("Saindo do sistema. Até mais!");

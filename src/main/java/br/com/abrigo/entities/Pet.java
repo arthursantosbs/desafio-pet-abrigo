@@ -11,12 +11,13 @@ public class Pet {
     private double idade;
     private double peso;
     private String raca;
+    private String arquivoOrigem;
 
 
     public Pet() {
     }
 
-    public Pet(String nomeCompleto, TipoPet tipoPet, SexoPet sexoPet, String endereco, double idade, double peso, String raca) {
+    public Pet(String nomeCompleto, TipoPet tipoPet, SexoPet sexoPet, String endereco, double idade, double peso, String raca, String arquivoOrigem) {
         this.nomeCompleto = nomeCompleto;
         this.tipoPet = tipoPet;
         this.sexoPet = sexoPet;
@@ -24,6 +25,7 @@ public class Pet {
         this.idade = idade;
         this.peso = peso;
         this.raca = raca;
+        this.arquivoOrigem = arquivoOrigem;
     }
 
     public String getNomeCompleto() {
@@ -80,6 +82,14 @@ public class Pet {
 
     public void setRaca(String raca) {
         this.raca = raca;
+    }
+
+    public String getArquivoOrigem() {
+        return arquivoOrigem;
+    }
+
+    public void setArquivoOrigem(String arquivoOrigem) {
+        this.arquivoOrigem = arquivoOrigem;
     }
 }
 
