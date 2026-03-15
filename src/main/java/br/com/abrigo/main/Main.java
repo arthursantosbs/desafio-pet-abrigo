@@ -14,7 +14,7 @@ public class Main {
 
         System.out.println("Bem vindo ao sistema de adoção de pets!");
         while (rodando) {
-            System.out.println("|n ---Menu Inicial---");
+            System.out.println("\n ---Menu Inicial---");
             System.out.println("1. Cadastrar novo pet");
             System.out.println("2 - Alterar os dados do pet cadastrado");
             System.out.println("3 - Deletar um pet cadastrado");
@@ -69,23 +69,17 @@ public class Main {
                         BuscaService buscaServDelete = new BuscaService();
                         DelecaoService delecaoService = new DelecaoService();
 
-                        boolean finalizouDelecao = false;
-                        while (!finalizouDelecao) {
-                            List<Pet> todosOsPetsDel = arqServDelete.carregarTodosOsPets();
-                            if (todosOsPetsDel.isEmpty()) {
-                                System.out.println("não há pets cadastrados para deletar!");
-                                break;
-                            }
-
-                            System.out.println("Busque o pet que deseja deletar:");
-                            List<Pet> petsEncontradosDel = buscaServDelete.iniciarBusca(todosOsPetsDel, sc);
-                            if (sc.nextLine().trim().equalsIgnoreCase("S")) {
-                                continue;
-                            }else {
-                                break;
-                            }
+                        List<Pet> todosOsPetsDel = arqServDelete.carregarTodosOsPets();
+                        if (todosOsPetsDel.isEmpty()) {
+                            System.out.println("Não há pets cadastrados para deletar!");
+                            break;
                         }
-                        // Aqui você pode chamar o metodo para deletar um pet cadastrado
+
+                        System.out.println("Busque o pet que deseja deletar:");
+                        List<Pet> petsEncontradosDel = buscaServDelete.iniciarBusca(todosOsPetsDel, sc);
+                        if (!petsEncontradosDel.isEmpty()) {
+                            delecaoService.iniciarDelecao(petsEncontradosDel, sc, arqServDelete);
+                        }
                         break;
                     case 4:
                         System.out.println("Listando todos os pets cadastrados...");
@@ -93,7 +87,7 @@ public class Main {
                         break;
                     case 5:
                         System.out.println("Listando pets por algum critério...");
-                        // Aqui você pode chamar o metodo para listar pets por algum critério
+                        // Aqui você pode chamar o metodo para listar pets por algum criterio
                         break;
                     case 6:
                         System.out.println("Saindo do sistema. Até mais!");

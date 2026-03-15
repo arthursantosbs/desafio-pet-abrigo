@@ -19,7 +19,7 @@ public class PetService {
         if(nome.isEmpty() || !nome.contains(" ")) {
             throw new ValidacaoPetException("O Pet deve ter um nome completo (nome e sobrenome).");
         }
-        if (!nome.matches("[a-zA-Z\\s]+$")) {
+        if (!nome.matches("[a-zA-ZÀ-ÿ\\s]+$")) {
             throw new ValidacaoPetException("O nome do Pet deve conter apenas letras e espaços.");
         }
         pet.setNomeCompleto(nome);
@@ -48,7 +48,7 @@ public class PetService {
         System.out.println(perguntas.get(3));
         System.out.print("Rua: ");
         String rua = scanner.nextLine().trim();
-        System.out.println("Número da casa(se não tiver, deixe vaxio): ");
+        System.out.println("Número da casa(se não tiver, deixe vaZio): ");
         String numero = scanner.nextLine().trim();
         if (numero.isEmpty() || !numero.matches("[0-9]+")) {
             numero = NAO_INFORMADO;
@@ -75,7 +75,7 @@ public class PetService {
             System.out.print("Esse valor é em anos? (S/N): ");
             String tipoIdade = scanner.nextLine().trim().toUpperCase();
             if (tipoIdade.equals("N")) {
-                idadeCalculada = idadeCalculada / 12; // Convertendo para meses
+                idadeCalculada = idadeCalculada / 12; // Convertendo meses para anos
             }else if (!tipoIdade.equals("S")) {
                 throw new ValidacaoPetException("Resposta inválida. Por favor, responda com 'S' para anos ou 'N' para meses.");
             }

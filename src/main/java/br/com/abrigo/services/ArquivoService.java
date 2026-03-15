@@ -73,6 +73,10 @@ public class ArquivoService {
             if (file1.getName().endsWith(".TXT")) {
                 try{
                     List<String> linhas = Files.readAllLines(file1.toPath());
+                    if (linhas.size() < 7) {
+                        System.out.println("Arquivo malformatado: " + file1.getName());
+                        continue;
+                    }
                     Pet pet = new Pet();
                     pet.setNomeCompleto(linhas.get(0).substring(4).trim());
                     String tipoTxt = linhas.get(1).substring(4).trim().toUpperCase();
@@ -85,14 +89,14 @@ public class ArquivoService {
                     if(idadeTxt.equalsIgnoreCase("Não informado")){
                         pet.setIdade(0.0);
                     }else {
-                        pet.setIdade(Double.parseDouble(idadeTxt.replace(" anos", "")));
+                        pet.setIdade(Double.parseDouble(idadeTxt.replaceAll("[^0-9.]", "")));
                     }
 
                     String pesoTxt = linhas.get(5).substring(4).trim();
                     if(pesoTxt.equalsIgnoreCase("Não informado")){
                         pet.setPeso(0.0);
                     }else {
-                        pet.setPeso(Double.parseDouble(pesoTxt.replace(" kg", "")));
+                        pet.setPeso(Double.parseDouble(pesoTxt.replaceAll("[^0-9.]", "")));
                     }
                     pet.setRaca(linhas.get(6).substring(4).trim());
                     pet.setArquivoOrigem(file1.getName());

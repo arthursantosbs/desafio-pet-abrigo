@@ -60,9 +60,14 @@ public class BuscaService {
                 }
                 break;
             case "5":
-                System.out.print("Digite a raça");
+                System.out.print("Digite a raça: ");
                 termoPesquisado = limparTexto(scanner.nextLine().trim());
                 pets.removeIf(p -> !limparTexto(p.getRaca()).contains(termoPesquisado));
+                break;
+            case "6":
+                System.out.print("Digite o endereço ou parte dele: ");
+                termoPesquisado = limparTexto(scanner.nextLine().trim());
+                pets.removeIf(p -> !limparTexto(p.getEndereco()).contains(termoPesquisado));
                 break;
             default:
                 System.out.println("Opção de critério inválida.");
@@ -81,14 +86,18 @@ public class BuscaService {
         int contador = 1;
         for (Pet pet : pets) {
             String nome = pet.getNomeCompleto();
+            String raca = pet.getRaca();
+            String endereco = pet.getEndereco();
 
             if (!termoPesquisado.isEmpty()) {
                 nome = nome.replaceAll("(?i)" + termoPesquisado, "\u001B[31m$0\u001B[0m");
+                raca = raca.replaceAll("(?i)" + termoPesquisado, "\u001B[31m$0\u001B[0m");
+                endereco = endereco.replaceAll("(?i)" + termoPesquisado, "\u001B[31m$0\u001B[0m");
             }
             System.out.println(contador + " - " + nome + " - " +
                     pet.getTipoPet() + " - " + pet.getSexoPet() + " - "
-                    + pet.getEndereco() + " - " + pet.getIdade() + "anos - " +
-                    pet.getPeso() + "kg - " + pet.getRaca());
+                    + endereco + " - " + pet.getIdade() + " anos - " +
+                    pet.getPeso() + " kg - " + raca);
             contador++;
         }
     }
