@@ -12,7 +12,6 @@ public class Main {
         ArquivoService leitor = new ArquivoService();
         boolean rodando = true;
 
-        System.out.println("Bem vindo ao sistema de adoção de pets!");
         while (rodando) {
             System.out.println("\n ---Menu Inicial---");
             System.out.println("1. Cadastrar novo pet");
