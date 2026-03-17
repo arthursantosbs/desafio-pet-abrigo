@@ -22,7 +22,7 @@ public class BuscaService {
 
         System.out.println("Escolha o 1° critério de busca");
         System.out.println("1 - Nome | 2 - Sexo | 3 - idade | 4 - peso | 5- raça | 6 - Endereço");
-        System.out.println("Opção: ");
+        System.out.print("Opção: ");
         String criterio1 = scanner.nextLine().trim();
         aplicarFiltro(pets, criterio1, scanner);
 
@@ -90,9 +90,9 @@ public class BuscaService {
             String endereco = pet.getEndereco();
 
             if (!termoPesquisado.isEmpty()) {
-                nome = nome.replaceAll("(?i)" + termoPesquisado, "\u001B[31m$0\u001B[0m");
-                raca = raca.replaceAll("(?i)" + termoPesquisado, "\u001B[31m$0\u001B[0m");
-                endereco = endereco.replaceAll("(?i)" + termoPesquisado, "\u001B[31m$0\u001B[0m");
+                nome = nome.replaceAll("(?i)" + termoPesquisado, "\u001B[0m");
+                raca = raca.replaceAll("(?i)" + termoPesquisado, "\u001B[0m");
+                endereco = endereco.replaceAll("(?i)" + termoPesquisado, "\u001B[0m");
             }
             System.out.println(contador + " - " + nome + " - " +
                     pet.getTipoPet() + " - " + pet.getSexoPet() + " - "

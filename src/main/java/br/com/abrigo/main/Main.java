@@ -83,10 +83,26 @@ public class Main {
                         break;
                     case 4:
                         System.out.println("Listando todos os pets cadastrados...");
+                        ArquivoService arqServList = new ArquivoService();
+                        List<Pet> todosOsPetsList = arqServList.carregarTodosOsPets();
+                        if (todosOsPetsList.isEmpty()) {
+                            System.out.println("não há pets cadastrados!");
+                            break;
+                        }
                         // Aqui você pode chamar o metodo para listar todos os pets cadastrados
                         break;
                     case 5:
                         System.out.println("Listando pets por algum critério...");
+                        ArquivoService arqServListCrit = new ArquivoService();
+                        List<Pet> todosOsPetsListCrit = arqServListCrit.carregarTodosOsPets();
+                        if (todosOsPetsListCrit.isEmpty()) {
+                            System.out.println("não há pets cadastrados!");
+                            break;
+                        }
+                        BuscaService buscaServListCrit = new BuscaService();
+
+                        buscaServListCrit.iniciarBusca(todosOsPetsListCrit, sc);
+                        
                         // Aqui você pode chamar o metodo para listar pets por algum criterio
                         break;
                     case 6:
