@@ -3,6 +3,8 @@
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 ![CLI](https://img.shields.io/badge/CLI-Terminal-black?style=for-the-badge)
 
+![essegf](https://github.com/user-attachments/assets/2385d4ab-624e-4f32-827c-6e7eede2a085)
+
 ## 💻 Sobre o Projeto
 Este é um sistema de gerenciamento de adoção de pets executado via **Interface de Linha de Comando (CLI)**. O projeto foi desenvolvido como resolução do desafio de programação proposto por [@devmagro](https://github.com/devmagro), focando na aplicação de boas práticas de Orientação a Objetos e manipulação do File System utilizando Java pura.
 
